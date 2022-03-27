@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--
+	NOTES:
+	1. All tokens are represented by '$' sign in the template.
+	2. You can write your code only wherever mentioned.
+	3. All occurrences of existing tokens will be replaced by their appropriate values.
+	4. Blank lines will be removed automatically.
+	5. Remove unnecessary comments before creating your template.
+-->
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="authoring-tool" content="Adobe_Animate_CC">
+<title>house</title>
+<!-- write your code here -->
+<style>
+  #animation_container {
+	position:absolute;
+	margin:auto;
+	left:0;right:0;
+	top:0;bottom:0;
+  }
+</style>
+<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+<script src="house.js"></script>
+<script>
+// Global Scripts
+	createjs.Touch.enable(stage);
+var root = this;
+this.tick1.visible=false;
+this.tick2.visible=false;
+this.tick3.visible=false;
+this.tick4.visible=false;
+this.tick5.visible=false;
+this.tick6.visible=false;
+this.picone.on("pressmove", movePictwo);
+function movePicone(e) {
+		var p = stage.globalToLocal(e.stageX, e.stageY)
+		e.currentTarget.x= p.x;
+		e.currentTarget.y= p.y;
+}
+this.picone.on("pressup" , dropPicone);
+function dropPicone () {
+	if(root.picone.x>590 && root.picone.x < 870 && root.picone.y > 190 && root.picone.y < 670 ) {
+	    root.tick1.visible=true;
+     } else {
+		root.tick1.visible=false;
+	 }
+}
+this.pictwo.on("pressmove", movePictwo );
+function movePictwo(e) {
+		var p = stage.globalToLocal(e.stageX, e.stageY)
+		e.currentTarget.x= p.x;
+		e.currentTarget.y= p.y;
+}
+this.pictwo.on("pressup" , dropPictwo);
+function dropPictwo () {
+	if(root.pictwo.x>180 && root.pictwo.x < 480 && root.pictwo.y > 190 && root.pictwo.y < 670 ) {
+	    root.tick2.visible=true;
+     } else {
+		root.tick2.visible=false;
+	 }
+}
+this.picthree.on("pressmove", movePicthree );
+function movePicthree(e) {
+		var p = stage.globalToLocal(e.stageX, e.stageY)
+		e.currentTarget.x= p.x;
+		e.currentTarget.y= p.y;
+}
+this.picthree.on("pressup" , dropPicthree);
+function dropPicthree () {
+	if(root.picthree.x>590 && root.picthree.x < 870 && root.picthree.y > 190 && root.picthree.y < 670 ) {
+	    root.tick3.visible=true;
+     } else {
+		root.tick3.visible=false;
+	 }
+}
+this.picfour.on("pressmove", movePicfour );
+function movePicfour(e) {
+		var p = stage.globalToLocal(e.stageX, e.stageY)
+		e.currentTarget.x= p.x;
+		e.currentTarget.y= p.y;
+}
+this.picfour.on("pressup" , dropPicfour);
+function dropPicfour () {
+	if(root.picfour.x>590 && root.picfour.x < 870 && root.picfour.y > 190 && root.picfour.y < 670 ) {
+	    root.tick4.visible=true;
+     } else {
+		root.tick4.visible=false;
+	 }
+}
+this.picfive.on("pressmove", movePicfive );
+function movePicfive(e) {
+		var p = stage.globalToLocal(e.stageX, e.stageY)
+		e.currentTarget.x= p.x;
+		e.currentTarget.y= p.y;
+}
+this.picfive.on("pressup" , dropPicfive);
+function dropPicfive () {
+	if(root.picfive.x>590 && root.picfive.x < 870 && root.picfive.y > 190 && root.picfive.y < 670 ) {
+	    root.tick5.visible=true;
+     } else {
+		root.tick5.visible=false;
+	 }
+}
+this.picsix.on("pressmove", movePicsix );
+function movePicsix(e) {
+		var p = stage.globalToLocal(e.stageX, e.stageY)
+		e.currentTarget.x= p.x;
+		e.currentTarget.y= p.y;
+}
+this.picsix.on("pressup" , dropPicsix);
+function dropPicsix () {
+	if(root.picsix.x>180 && root.picsix.x < 480 && root.picsix.y > 190 && root.picsix.y < 670 ) {
+	    root.tick6.visible=true;
+     } else {
+		root.tick6.visible=false;
+	 }
+}</script>
+<script>
+var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+function init() {
+	canvas = document.getElementById("canvas");
+	anim_container = document.getElementById("animation_container");
+	dom_overlay_container = document.getElementById("dom_overlay_container");
+	var comp=AdobeAn.getComposition("8917837F5AAAA74B861E0EE53D6A7503");
+	var lib=comp.getLibrary();
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+	loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+	var lib=comp.getLibrary();
+	loader.loadManifest(lib.properties.manifest);
+}
+function handleFileLoad(evt, comp) {
+	var images=comp.getImages();	
+	if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
+}
+function handleComplete(evt,comp) {
+	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+	var lib=comp.getLibrary();
+	var ss=comp.getSpriteSheet();
+	var queue = evt.target;
+	var ssMetadata = lib.ssMetadata;
+	for(i=0; i<ssMetadata.length; i++) {
+		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+	}
+	exportRoot = new lib.hs3();
+	stage = new lib.Stage(canvas);	
+	//Registers the "tick" event listener.
+	fnStartAnimation = function() {
+		stage.addChild(exportRoot);
+		createjs.Ticker.framerate = lib.properties.fps;
+		createjs.Ticker.addEventListener("tick", stage);
+	}	    
+	//Code to support hidpi screens and responsive scaling.
+	AdobeAn.makeResponsive(false,'both',false,1,[canvas,anim_container,dom_overlay_container]);	
+	AdobeAn.compositionLoaded(lib.properties.id);
+	fnStartAnimation();
+}
+</script>
+<!-- write your code here -->
+</head>
+<body onload="init();" style="margin:0px;">
+	<div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:1024px; height:768px">
+		<canvas id="canvas" width="1024" height="768" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
+		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1024px; height:768px; position: absolute; left: 0px; top: 0px; display: block;">
+		</div>
+	</div>
+</body>
+</html>
